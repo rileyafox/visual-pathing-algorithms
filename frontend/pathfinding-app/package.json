@@ -1,5 +1,5 @@
 {
-  "name": "visual-pathing-algorithms",
+  "name": "pathfinding-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
