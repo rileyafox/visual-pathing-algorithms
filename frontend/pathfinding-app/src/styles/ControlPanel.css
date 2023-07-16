@@ -1,0 +1,14 @@
+.control-panel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .algorithm-select {
+    width: 200px;
+  }
+  
+  .start-button {
+    width: 100px;
+  }
+  

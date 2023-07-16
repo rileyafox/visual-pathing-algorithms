@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from pathfinding import bfs_pathfinding
+from astar import astar_pathfinding
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -12,11 +13,19 @@ def api_pathfinding():
         board = data.get('board')
         start = tuple(data.get('start'))
         end = tuple(data.get('end'))
+        algorithm = data.get('algorithm', 'bfs')  # Default to 'bfs' if 'algorithm' not in request
 
         if board is None:
             return jsonify({'error': 'Invalid board data.'}), 400
 
-        result = bfs_pathfinding(board, start, end)
+        # Use the selected algorithm
+        if algorithm == 'bfs':
+            result = bfs_pathfinding(board, start, end)
+        elif algorithm == 'astar':
+            result = astar_pathfinding(board, start, end)
+        else:
+            return jsonify({'error': f'Invalid algorithm: {algorithm}'}), 400
+
         path = result.get('path')
         explored_cells = result.get('explored_cells')
         
