@@ -1,14 +1,42 @@
-.board {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 5px;
-  justify-items: center;
-  width: 380px; /* 8 * (45px cell width + 5px gap width) */
-  padding: 20px;
-  background-color: #f5f5f5;
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
 }
 
-.cell {
-  box-sizing: border-box;
-  transition: background-color 0.3s;
+.cell.empty:nth-child(even) {
+  background-color: #fff;
+}
+
+.cell.empty:nth-child(odd) {
+  background-color: #eee;
+}
+
+.cell.start {
+  background-color: #38a169;
+}
+
+.cell.end {
+  background-color: #e53e3e;
+}
+
+.cell.path {
+  background-color: #9F7AEA;
+}
+
+.cell.explored {
+  background-color: #D6BCFA;
+}
+
+.cell.obstacle {
+  background-color: #718096;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1px;
 }

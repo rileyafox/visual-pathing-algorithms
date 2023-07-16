@@ -12,10 +12,18 @@ def bfs_pathfinding(board, start, end):
     queue = deque([(start, [])])  # Queue stores the current cell and the path to it
     visited = set([start])  # Set stores visited cells
 
+    # list to store all the explored cells
+    explored_cells = []
+
     while queue:
         (current, path) = queue.popleft()
+
+        # add current cell to explored cells
+        if current not in [start, end]:  # we exclude start and end points
+            explored_cells.append(list(current))
+
         if current == end:
-            return path + [end]  # Return the path to the end
+            return {'path': path + [end], 'explored_cells': explored_cells}  # Return the path to the end and the explored cells
 
         for direction in DIRECTIONS:
             # Compute the next cell
@@ -28,4 +36,4 @@ def bfs_pathfinding(board, start, end):
                 queue.append((next_cell, path + [current]))  # Append the next cell and path to it
                 visited.add(next_cell)  # Mark the next cell as visited
 
-    return None  # Return None if there's no path
+    return {'path': None, 'explored_cells': explored_cells}  # Return None if there's no path, and the explored cells
